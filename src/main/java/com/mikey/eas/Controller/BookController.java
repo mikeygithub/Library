@@ -50,8 +50,13 @@ public class BookController {
     return ADD;
     }
 
-    @RequestMapping("/updatebookUI")
-    public String updatebookUI(){
+    @RequestMapping("/updatebookUI/{currentPage}")
+    public String updatebookUI(@PathVariable(value = "currentPage",required = false) int currentPage, Map<String,Object> map){
+
+        PageInfo<Book> allBook = bookService.getAllBook(currentPage, 11);
+
+        map.put("allbook",allBook);
+
         return UP;
     }
 
@@ -59,7 +64,7 @@ public class BookController {
     @RequestMapping("/updatebook")
     public String updatebook(Book book){
         bookService.updateBook(book);
-        return DEL;
+        return UP;
     }
 
     @RequestMapping("/deletebookUI")
@@ -85,10 +90,14 @@ public class BookController {
      * @param map
      */
     @RequestMapping("/detail/{bookId}")
-    public void getBookDetail(@PathVariable("bookId") int bookId,Map<String,Object> map){
+    public String getBookDetail(@PathVariable("bookId") int bookId,Map<String,Object> map){
 
         Book book = bookService.getBook(bookId);
 
+        System.out.println("Message==============================="+book);
+
         map.put("book",book);
+
+        return "detail";
     }
 }

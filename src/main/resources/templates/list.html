@@ -27,7 +27,7 @@
             <td th:text="${book.bookType}">ipsum</td>
             <td th:text="${book.bookAuthor}">dolor</td>
             <td th:text="${book.bookNum}">sit</td>
-            <td><a type="button" class="btn btn-primary" href="@{/detail/${book.bookId}" data-toggle="modal" data-target="#myModal">详情</a></td>
+            <td><a type="button" class="btn btn-primary" th:href="@{'/detail/'+${book.bookId}}" target="mainframe">详情</a></td>
         </tr>
         </tbody>
     </table>
@@ -40,7 +40,7 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li ><a href="#">1</a></li>
+        <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
         <li><a href="#">4</a></li>
@@ -55,57 +55,8 @@
 </div>
 <!--detail-->
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label  class="col-sm-2 control-label">书籍编号</label>
-                    <div class="col-sm-10">
-                        <input name="bookId" class="form-control"  placeholder="请输入">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-2 control-label">书籍编号</label>
-                    <div class="col-sm-10">
-                        <input name="bookId" class="form-control" placeholder="请输入">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-2 control-label">书籍编号</label>
-                    <div class="col-sm-10">
-                        <input name="bookId" class="form-control"  placeholder="请输入">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--detail end-->
+
 <script>
-    // function delbook(bookid) {
-    //     $.ajax({
-    //         url:"/deletebook/"+bookid,
-    //         success:function (data) {
-    //
-    //         }
-    //
-    //     })
-    // }
-    // function detailbook(bookid) {
-    //     $.ajax({
-    //         url:"/deletebook/"+bookid,
-    //         success:function (data) {
-    //
-    //         }
-    //
-    //     })
-    // }
 </script>
 </body>
 </html>

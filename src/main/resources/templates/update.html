@@ -28,9 +28,7 @@
             <td th:text="${book.bookType}">ipsum</td>
             <td th:text="${book.bookAuthor}">dolor</td>
             <td th:text="${book.bookNum}">sit</td>
-            <button type="button" class="btn btn-primary glyphicon glyphicon-minus"></button>
-            <button type="button" class="btn btn-primary glyphicon glyphicon-plus"></button>
-            <td><button type="button" class="btn btn-primary" onclick="detailbook()">修改</button></td>
+            <td><a target="mainframe" type="button" class="btn btn-primary" th:href="'/detail/'${book.bookId}" data-toggle="modal" data-target=".bs-example-modal-lg">修改</a></td>
         </tr>
         </tbody>
     </table>
@@ -57,24 +55,6 @@
     </nav>
 </div>
 <script>
-    // function delbook(bookid) {
-    //     $.ajax({
-    //         url:"/deletebook/"+bookid,
-    //         success:function (data) {
-    //
-    //         }
-    //
-    //     })
-    // }
-    // function detailbook(bookid) {
-    //     $.ajax({
-    //         url:"/deletebook/"+bookid,
-    //         success:function (data) {
-    //
-    //         }
-    //
-    //     })
-    // }
 </script>
 </body>
 </html>
