@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>用户登入页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+    <script src="/static/common/common.js"></script>
+</head>
+<body style="overflow: hidden">
+<div class="ch-container">
+    <div class="row" style="padding-top: 100px"></div>
+    <div class="row">
+        
+    <div class="row">
+        <div class="col-md-12 center login-header">
+            <!--<h2>EDADSY系统</h2>-->
+            <h2>登入页面</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="well col-md-3 center login-box">
+            <div class="alert alert-info">
+               请先登入
+            </div>
+            <form class="form-horizontal" action="/login" method="post">
+                <fieldset>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                        <input name="userid" type="text" class="form-control" placeholder="工号" >
+                               <!--th:value="${user!=null}?${user.userid}:''">-->
+                    </div>
+                    <div class="clearfix"></div><br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input name="password" id="inputPassword" type="password" class="form-control" placeholder="密码" th:value="${user!=null}?${user.password}:''" >
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="input-prepend">
+                        <label class="remember" for="remember"><input name="rememberMe" type="checkbox" id="remember" value="true">&nbsp;记住密码</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p class="center col-md-5">
+                        <button type="submit" class="btn btn-primary">登入</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <button id="tipbtn" style="display:none;"  type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="background-color: #ebccd1">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only"></span>系统提示:<span id="msg" th:text="${msg}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        if($("#msg").text()!=""){
+            $("#tipbtn").click();
+        }
+    })
+</script>
+</body>
+</html>

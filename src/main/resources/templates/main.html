@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>图书馆管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+    <script src="/static/common/common.js"></script>
+</head>
+
+<body style="overflow: hidden">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/main"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+                <span>图书管理系统</span></a>
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs" > admin</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout">注销</a></li>
+                </ul>
+            </div>
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="#"><i class="glyphicon glyphicon-globe"></i> 访问网站</a></li>
+                <li>
+                    <form class="navbar-search pull-right">
+                        <input placeholder="搜索" class="search-query form-control col-md-10" name="query"
+                               type="text">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div class="ch-container">
+    <div class="row">
+        <div class="col-sm-2 col-lg-2">
+            <div class="sidebar-nav" style="height: 850px">
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+                    </div>
+                    <ul class="nav nav-pills nav-stacked main-menu" >
+                        <li class="nav-header">主要功能</li>
+                        <li><a class="ajax-link" href="/main"><i class="glyphicon glyphicon-home"></i><span style="padding-left: 10px">返回主页</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="/list/0" target="mainframe"><i class="glyphicon glyphicon-eye-open"></i><span style="padding-left: 10px">查看图书</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="/addbookUI" target="mainframe"><i class=" glyphicon glyphicon-plus"></i><span style="padding-left: 10px">添加图书</span></a></li>
+                        <li><a class="ajax-link" href="/updatebookUI" target="mainframe"><i class="glyphicon glyphicon-edit"></i><span style="padding-left: 10px">修改图书</span></a></li>
+                        <li><a class="ajax-link" href="/list/0" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">图书列表</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="/deletebookUI" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">删除图书</span></a></li>
+                        <li><a class="ajax-link" href="/addbooktype" target="mainframe"><i class="glyphicon glyphicon-tags"></i><span style="padding-left: 10px">添加类别</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="/deletebooktype" target="mainframe"><i class="glyphicon glyphicon-th-large"></i><span style="padding-left: 10px">删除类别</span></a>
+                        </li>
+                        <li class="nav-header hidden-md">其他功能</li>
+                        <li><a href="/stting"><i class="glyphicon glyphicon-cog" target="mainframe"></i><span style="padding-left: 10px">系统设置</span></a>
+                        </li>
+                        <li><a href="/aboub"><i class="glyphicon glyphicon-question-sign" target="mainframe"></i><span style="padding-left: 10px">联系我们</span></a>
+                        </li>
+                    </ul>
+                    <label><li class="nav-header hidden-md">敬请期待更多功能</li></label>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">当前位置:</a>
+        </li>
+        <li>
+            <a href="/main">主页</a>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well">
+                    <h2><i></i></h2>
+                        <div class="box-icon">
+                            <button href="#" class="btn btn-setting btn-round btn-default" id="mes" style="display: none"></button>
+                </div>
+            </div>
+            <div id="main" style="height: 750px;" >
+                <iframe src="/list/0" name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px">
+                </iframe>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <hr>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>本站提示</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="row">
+        <p class="col-md-3 col-sm-3 col-xs-12 powered-by center-block">©  2018  Powered by: <a href="#">Mikey</a></p>
+    </footer>
+    </div>
+</div>
+</body>
+<script>
+</script>
+</html>
