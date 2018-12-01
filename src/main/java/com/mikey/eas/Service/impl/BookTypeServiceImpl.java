@@ -1,5 +1,7 @@
 package com.mikey.eas.Service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Mapper.BookTypeMapper;
 import com.mikey.eas.Pojo.BookType;
 import com.mikey.eas.Pojo.BookTypeExample;
@@ -43,9 +45,14 @@ public class BookTypeServiceImpl implements BookTypeService {
     }
 
     @Override
-    public List<BookType> getAllBookType() {
-        BookTypeExample bookTypeExample=new BookTypeExample();
+    public PageInfo<BookType> getAllBookType(int currentPage, int pageSize) {
 
-        return bookTypeMapper.selectByExample(null);
+        PageHelper.startPage(currentPage,pageSize);
+
+        List<BookType> allBook=bookTypeMapper.selectByExample(null);
+
+        PageInfo pageData = new PageInfo(allBook, pageSize);
+
+        return pageData;
     }
 }

@@ -1,5 +1,6 @@
 package com.mikey.eas.Service;
 
+import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Pojo.BookType;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface BookTypeService {
         public void deleteBookType(int bookTypeId);
         public void updateBookType(BookType bookType);
         public BookType getBookType(int bookTypeId);
-        public List<BookType> getAllBookType();
+        public PageInfo<BookType> getAllBookType(int currentPage, int pageSize);
 }

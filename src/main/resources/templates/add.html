@@ -82,18 +82,83 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="button" class="btn btn-primary" id="btn1">确认添加</button>
+            <button type="submit" class="btn btn-primary" id="btn1">确认添加</button>
         </div>
     </div>
 </form>
 </div>
 </body>
 <script>
-    $("#btn1").click(function(){
-        $("#addbooks").submit();
-        alert("提交")
-        $("#message" , parent.document).text("添加成功");
-        $("#mes" , parent.document).click();
+
+    $(function () {
+        $('form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                bookId: {
+                    message: '验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '书籍编号不能为空'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+$/,
+                            message: '书籍编号只能是数字'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 18,
+                            message: '书籍编号长度必须在6到18位之间'
+                        },
+                    }
+                },
+                bookName: {
+                    validators: {
+                        notEmpty: {
+                            message: '书籍名称不能为空'
+                        }
+                    }
+                },
+                bookDetail: {
+                    validators: {
+                        notEmpty: {
+                            message: '书籍简介不能为空'
+                        }
+                    }
+                },
+                bookType: {
+                    validators: {
+                        notEmpty: {
+                            message: '书籍类型不能为空'
+                        }
+                    }
+                },
+                bookNum: {
+                    validators: {
+                        notEmpty: {
+                            message: '书籍数量不能为空'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+$/,
+                            message: '书籍数量只能是数字'
+                        },
+                    }
+                },
+                bookAuthor: {
+                    validators: {
+                        notEmpty: {
+                            message: '书籍作者不能为空'
+                        }
+                    }
+                }
+            }
+        })}).on("success.form.bv",function(e){
+                $("#message" , parent.document).text("添加成功");
+                $("#mes" , parent.document).click();
     });
 </script>
 </html>

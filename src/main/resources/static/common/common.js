@@ -1,6 +1,7 @@
 document.write('<link id="bs-css" href="css/bootstrap-cerulean.min.css" th:href="@{/static/css/bootstrap-cerulean.min.css}" rel="stylesheet">');
 document.write('<link href="css/charisma-app.css" th:href="@{/static/css/charisma-app.css}" rel="stylesheet">');
 document.write('<link href="css/bootstrap.min.css" th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">');
+document.write('<link href="css/bootstrapValidator.css" th:href="@{/static/css/bootstrapValidator.css}" rel="stylesheet">');
 document.write('<link href="bower_components/fullcalendar/dist/fullcalendar.css" th:href="@{/static/bower_components/fullcalendar/dist/fullcalendar.css}"  rel="stylesheet">');
 document.write('<link href="bower_components/fullcalendar/dist/fullcalendar.print.css" th:href="@{/static/bower_components/fullcalendar/dist/fullcalendar.print.css}" rel="stylesheet" media="print">');
 document.write('<link href="bower_components/chosen/chosen.min.css" th:href="@{/static/bower_components/chosen/chosen.min.css}" rel="stylesheet">');
@@ -19,6 +20,7 @@ document.write('<script src="/static/bower_components/jquery/jquery.min.js"></sc
 document.write('<link rel="shortcut icon" th:href="@{/static/img/favicon.ioc}">');
 document.write('<link rel="shortcut icon" th:href="@{/static/img/logo20.png}">');
 document.write('<script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"  type="text/javascript" ></script>');
+document.write('<script src="/static/js/bootstrapValidator.js"  type="text/javascript" ></script>');
 document.write('<script src="/static/js/jquery.cookie.js"  type="text/javascript" ></script>');
 document.write('<script src="/static/bower_components/moment/min/moment.min.js"  type="text/javascript" ></script>');
 document.write('<script src="/static/bower_components/fullcalendar/dist/fullcalendar.min.js"  type="text/javascript" ></script>');
