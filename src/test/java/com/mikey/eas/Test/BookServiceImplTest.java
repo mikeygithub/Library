@@ -28,7 +28,7 @@ public class BookServiceImplTest {
 
     @Test
     public void getAllBook() {
-        PageInfo<Book> allBook = bookService.getAllBook(0, 10);
-        System.out.println("Message="+allBook);
+//        PageInfo<Book> allBook = bookService.getAllBook(0, 10);
+//        System.out.println("Message="+allBook);
     }
 }

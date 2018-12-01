@@ -54,6 +54,8 @@ public class BookController {
     public String updatebookUI(){
         return UP;
     }
+
+
     @RequestMapping("/updatebook")
     public String updatebook(Book book){
         bookService.updateBook(book);
@@ -66,9 +68,27 @@ public class BookController {
     }
 
 
+    /**
+     * 删除图书
+     * @param bookId
+     * @return
+     */
     @RequestMapping("/deletebook/{bookId}")
     public String deleteBook(@PathVariable("bookId") int bookId){
         bookService.deleteBook(bookId);
         return LIST;
+    }
+
+    /**
+     * 获取书籍详情
+     * @param bookId
+     * @param map
+     */
+    @RequestMapping("/detail/{bookId}")
+    public void getBookDetail(@PathVariable("bookId") int bookId,Map<String,Object> map){
+
+        Book book = bookService.getBook(bookId);
+
+        map.put("book",book);
     }
 }
