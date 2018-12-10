@@ -32,21 +32,21 @@
         </tbody>
     </table>
 </div>
-<div class="center-block">
-<nav aria-label="Page navigation center-block">
-    <ul class="pagination center-block">
+<div >
+<nav aria-label="Page navigation" style="text-align: center">
+    <ul class="pagination">
         <li>
-            <a href="#" aria-label="Previous">
+            <a th:href="@{'/list/'+${allbook.prePage}}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
+        <li><a th:href="@{'/list/1'}">1</a></li>
+        <li><a th:href="@{'/list/2'}">2</a></li>
+        <li><a th:href="@{'/list/3'}">3</a></li>
+        <li><a th:href="@{'/list/4'}">4</a></li>
+        <li><a th:href="@{'/list/5'}">5</a></li>
         <li>
-            <a href="#" aria-label="Next">
+            <a th:href="@{'/list/'+${allbook.nextPage}}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

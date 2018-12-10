@@ -10,8 +10,8 @@
 </head>
 
 <body style="overflow: hidden">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-inner">
+    <div class="navbar navbar-default  " role="navigation">
+        <div class="navbar-inner bg-primary">
             <button type="button" class="navbar-toggle pull-left animated flip">
                 <span class="sr-only"></span>
                 <span class="icon-bar"></span>
@@ -51,23 +51,23 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" >
                         <li class="nav-header">主要功能</li>
-                        <li><a class="ajax-link" href="/main"><i class="glyphicon glyphicon-home"></i><span style="padding-left: 10px">返回主页</span></a>
+                        <li><a href="/main"><i class="glyphicon glyphicon-home"></i><span style="padding-left: 10px">返回主页</span></a>
                         </li>
-                        <li><a class="ajax-link" href="/list/0" target="mainframe"><i class="glyphicon glyphicon-eye-open"></i><span style="padding-left: 10px">查看图书</span></a>
+                        <li><a href="/list/0" target="mainframe"><i class="glyphicon glyphicon-eye-open"></i><span style="padding-left: 10px">查看图书</span></a>
                         </li>
-                        <li><a class="ajax-link" href="/addbookUI" target="mainframe"><i class=" glyphicon glyphicon-plus"></i><span style="padding-left: 10px">添加图书</span></a></li>
-                        <li><a class="ajax-link" href="/updatebookUI/0" target="mainframe"><i class="glyphicon glyphicon-edit"></i><span style="padding-left: 10px">修改图书</span></a></li>
-                        <li><a class="ajax-link" href="/list/0" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">图书列表</span></a>
+                        <li><a href="/addbookUI" target="mainframe"><i class=" glyphicon glyphicon-plus"></i><span style="padding-left: 10px">添加图书</span></a></li>
+                        <li><a href="/updatebookUI/1" target="mainframe"><i class="glyphicon glyphicon-edit"></i><span style="padding-left: 10px">修改图书</span></a></li>
+                        <li><a href="/list/0" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">图书列表</span></a>
                         </li>
-                        <li><a class="ajax-link" href="/deletebookUI" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">删除图书</span></a></li>
-                        <li><a class="ajax-link" href="/addbooktypeUI" target="mainframe"><i class="glyphicon glyphicon-tags"></i><span style="padding-left: 10px">添加类别</span></a>
+                        <li><a href="/deletebookUI/1" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">删除图书</span></a></li>
+                        <li><a href="/addbooktypeUI" target="mainframe"><i class="glyphicon glyphicon-tags"></i><span style="padding-left: 10px">添加类别</span></a>
                         </li>
-                        <li><a class="ajax-link" href="/booktypeUI/1" target="mainframe"><i class="glyphicon glyphicon-th-large"></i><span style="padding-left: 10px">删除类别</span></a>
+                        <li><a href="/booktypeUI/1" target="mainframe"><i class="glyphicon glyphicon-th-large"></i><span style="padding-left: 10px">删除类别</span></a>
                         </li>
                         <li class="nav-header hidden-md">其他功能</li>
-                        <li><a href="/stting"><i class="glyphicon glyphicon-cog" target="mainframe"></i><span style="padding-left: 10px">系统设置</span></a>
+                        <li><a href="/setting"><i class="glyphicon glyphicon-cog" target="mainframe"></i><span style="padding-left: 10px">系统设置</span></a>
                         </li>
-                        <li><a href="/aboub"><i class="glyphicon glyphicon-question-sign" target="mainframe"></i><span style="padding-left: 10px">联系我们</span></a>
+                        <li><a href="/aboubt"><i class="glyphicon glyphicon-question-sign" target="mainframe"></i><span style="padding-left: 10px">联系我们</span></a>
                         </li>
                     </ul>
                     <label><li class="nav-header hidden-md">敬请期待更多功能</li></label>
@@ -85,14 +85,32 @@
         </li>
     </ul>
 </div>
+            <!--test-->
+            <!-- Button trigger modal -->
+            <button id="mes" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none"></button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">本站提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="message"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well">
-                    <h2><i></i></h2>
-                        <div class="box-icon">
-                            <button href="#" class="btn btn-setting btn-round btn-default" id="mes" style="display: none"></button>
-                </div>
             </div>
             <div id="main" style="height: 750px;" >
                 <iframe src="/list/0" name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px">
@@ -103,109 +121,23 @@
     </div>
 </div>
     <hr>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>本站提示</h3>
-                </div>
-                <div class="modal-body">
-                    <p id="message"></p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">确定</a>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <form class="form-horizontal" action="/addbook" id="addbooks" method="post">
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">书籍编号</label>
-                            <div class="col-sm-10">
-                                <input name="bookId" class="form-control" id="" placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">书籍名称</label>
-                            <div class="col-sm-10">
-                                <input name="bookName" class="form-control"  placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">书籍类型</label>
-                            <div class="col-sm-10">
-                                <select name="bookType" class="form-control">
-                                    <option value="1">青春</option>
-                                    <option value="2">小说</option>
-                                    <option value="3">文学</option>
-                                    <option value="4">艺术</option>
-                                    <option value="5">动漫/幽默</option>
-                                    <option value="6">娱乐时尚</option>
-                                    <option value="7">旅游</option>
-                                    <option value="8">地图/地理</option>
-                                    <option value="9">生活</option>
-                                    <option value="10">婚恋/性</option>
-                                    <option value="11">育儿/成长</option>
-                                    <option value="12">保健/心理健康</option>
-                                    <option value="13">体育</option>
-                                    <option value="14">自我实现/励志</option>
-                                    <option value="15">管理</option>
-                                    <option value="16">经济</option>
-                                    <option value="17">法律</option>
-                                    <option value="18">政治/军事</option>
-                                    <option value="19">哲学/宗教</option>
-                                    <option value="20">社会科学</option>
-                                    <option value="21">古籍</option>
-                                    <option value="22">文化</option>
-                                    <option value="23">历史</option>
-                                    <option value="24">传记</option>
-                                    <option value="25">少儿</option>
-                                    <option value="26">中小学教辅</option>
-                                    <option value="27">外语</option>
-                                    <option value="28">考试</option>
-                                    <option value="29">教材</option>
-                                    <option value="30">工具书</option>
-                                    <option value="31">科普读物</option>
-                                    <option value="32">计算机/网络</option>
-                                    <option value="33">医学</option>
-                                    <option value="34">原版书</option>
-                                    <option value="35">科学技术</option>
-                                    <option value="36">科文商科教材</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">书籍数量</label>
-                            <div class="col-sm-10">
-                                <input name="bookNum"  class="form-control" placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">书籍作者</label>
-                            <div class="col-sm-10">
-                                <input name="bookAuthor" class="form-control" placeholder="请输入">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">书籍简介</label>
-                            <div class="col-sm-10">
-                                <textarea name="bookDetail" class="form-control" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" id="btn1">确认添加</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <!--<div class="modal-dialog">-->
+            <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal">×</button>-->
+                    <!--<h3>本站提示</h3>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                    <!--<p id="message"></p>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>-->
+                    <!--<a href="#" class="btn btn-primary" data-dismiss="modal">确定</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <footer class="row">
         <p class="col-md-3 col-sm-3 col-xs-12 powered-by center-block">©  2018  Powered by: <a href="#">Mikey</a></p>
     </footer>

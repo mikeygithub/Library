@@ -24,6 +24,12 @@ public class BookTypeController {
     @Autowired
     private BookTypeService bookTypeService;
 
+    /**
+     * 类型列表
+     * @param currentPage
+     * @param map
+     * @return
+     */
     @RequestMapping("/booktypeUI/{currentPage}")
     public String BookTypeUI(@PathVariable(value = "currentPage",required = false) int currentPage, Map<String,Object> map){
         PageInfo<BookType> allBookType = bookTypeService.getAllBookType(currentPage,11);
@@ -31,16 +37,31 @@ public class BookTypeController {
         return "booktypelist";
     }
 
+    /**
+     * 删除
+     * @param bookTypeId
+     * @return
+     */
     @RequestMapping("/deletebooktype/{bookTypeId}")
     public String deleteBookTypeUI(@PathVariable("bookTypeId") int bookTypeId){
         bookTypeService.deleteBookType(bookTypeId);
-        return "booktypelist";
+        return "redirect:/booktypeUI/1";
     }
 
+    /**
+     * 添加页面
+     * @return
+     */
     @RequestMapping("/addbooktypeUI")
     public String addBookType(){
         return "addbooktype";
     }
+
+    /**
+     * 添加
+     * @param bookType
+     * @return
+     */
     @RequestMapping("/addbooktype")
     public String addBookType(BookType bookType){
         bookTypeService.addBookType(bookType);

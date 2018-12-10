@@ -23,16 +23,16 @@
             <td th:text="${type.typeId}">1,001</td>
             <td th:text="${type.typeName}">1,001</td>
             <td>
-                <button type="button" class="btn btn-danger" onclick="">删除</button></td>
+                <a type="button" class="btn btn-danger" th:href="@{'/deletebooktype/'+${type.typeId}}" onclick="showMsg()">删除</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<div class="center-block">
-<nav aria-label="Page navigation center-block">
-    <ul class="pagination">
+<div class="">
+<nav aria-label="Page navigation " style="text-align: center">
+    <ul class="pagination ">
         <li>
-            <a href="#" aria-label="Previous">
+            <a th:href="@{'/booktypeUI/'+${allBookType.prePage}}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
@@ -42,12 +42,18 @@
         <li><a href="#">4</a></li>
         <li><a href="#">5</a></li>
         <li>
-            <a href="#" aria-label="Next">
+            <a th:href="@{'/booktypeUI/'+${allBookType.nextPage}}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
     </ul>
 </nav>
 </div>
+<script>
+    function showMsg() {
+        $("#message" , parent.document).text("删除成功");
+        $("#mes" , parent.document).click();
+    }
+</script>
 </body>
 </html>
