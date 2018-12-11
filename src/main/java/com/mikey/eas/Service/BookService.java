@@ -19,4 +19,6 @@ public interface BookService {
     public void updateBook(Book book);
     public Book getBook(int bookId);
     public PageInfo<Book> getAllBook(int currentPage, int pageSize);
+
+    PageInfo<Book> getBookByIdOrBookName(String query,int i, int i1);
 }

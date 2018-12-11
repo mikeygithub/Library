@@ -60,4 +60,13 @@ public class Book {
     public void setBookAuthor(String bookAuthor) {
         this.bookAuthor = bookAuthor == null ? null : bookAuthor.trim();
     }
+    private BookType bookTypes;
+
+    public BookType getBookTypes() {
+        return bookTypes;
+    }
+
+    public void setBookTypes(BookType bookTypes) {
+        this.bookTypes = bookTypes;
+    }
 }

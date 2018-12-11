@@ -1,10 +1,10 @@
 package com.mikey.eas.Service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Mapper.BookMapper;
 import com.mikey.eas.Pojo.Book;
+import com.mikey.eas.Pojo.BookExample;
 import com.mikey.eas.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +51,35 @@ public class BookServiceImpl implements BookService {
         PageHelper.startPage(currentPage,pageSize);
 
         List<Book> allBook=bookMapper.selectByExample(null);
+
+        PageInfo pageData = new PageInfo(allBook, pageSize);
+
+        return pageData;
+    }
+
+    /**
+     * 搜索图书分页
+     * @param idOrName
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageInfo<Book> getBookByIdOrBookName(String idOrName,int currentPage, int pageSize) {
+
+        BookExample bookExample = new BookExample();
+
+        BookExample.Criteria criteria = bookExample.createCriteria();//bookname
+
+        criteria.andBookNameLike(idOrName);
+
+        BookExample.Criteria criteria2 = bookExample.createCriteria();
+
+        bookExample.or(criteria2.andBookIdEqualTo(Integer.parseInt(idOrName)));
+
+        PageHelper.startPage(currentPage,pageSize);
+
+        List<Book> allBook=bookMapper.selectByExample(bookExample);
 
         PageInfo pageData = new PageInfo(allBook, pageSize);
 

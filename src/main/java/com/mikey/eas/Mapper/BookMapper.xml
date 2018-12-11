@@ -8,6 +8,10 @@
     <result column="book_type" jdbcType="INTEGER" property="bookType" />
     <result column="book_num" jdbcType="INTEGER" property="bookNum" />
     <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
+      <association property="bookTypes" javaType="com.mikey.eas.Pojo.BookType">
+        <id column="type_id"  property="typeId" />
+        <result column="type_name" property="typeName" />
+      </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    book_id, book_name, book_detail, book_type, book_num, book_author
+    book_id, book_name, book_detail, book_type, book_num, book_author,type_id,type_name
   </sql>
   <select id="selectByExample" parameterType="com.mikey.eas.Pojo.BookExample" resultMap="BaseResultMap">
     select
@@ -76,7 +80,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from lib_book
+    from lib_book left join lib_book_type on type_id=book_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,10 +88,11 @@
       order by ${orderByClause}
     </if>
   </select>
+  <!--查询-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from lib_book
+    from lib_book left join lib_book_type on type_id=book_type
     where book_id = #{bookId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

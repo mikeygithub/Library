@@ -148,4 +148,22 @@ public class BookController {
 
         return "updatabook";
     }
+
+    /**
+     * 关于我们
+     * @return
+     */
+    @RequestMapping("/about")
+    public String aboutUI(){
+        return "about";
+    }
+    @RequestMapping("/seacherbook/{query}")
+    public String seacherBook(@PathVariable("query") String query,Map<String,Object> map){
+
+        PageInfo<Book> allBook = bookService.getBookByIdOrBookName(query,1, 11);
+
+        map.put("allbook",allBook);
+
+        return "result";
+    }
 }

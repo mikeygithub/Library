@@ -24,7 +24,7 @@
         <tr th:each="book :${allbook.getList()}">
             <td th:text="${book.bookId}">1,001</td>
             <td th:text="${book.bookName}">Lorem</td>
-            <td th:text="${book.bookType}">ipsum</td>
+            <td th:text="${book.bookTypes.typeName}">ipsum</td>
             <td th:text="${book.bookAuthor}">dolor</td>
             <td th:text="${book.bookNum}">sit</td>
             <td><a target="mainframe" type="button" class="btn btn-danger" th:href="@{'/deletebook/'+${book.bookId}}" onclick="showMsg()">删除</a></td>

@@ -26,17 +26,23 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">修改密码</a></li>
-                    <li class="divider"></li>
                     <li><a href="/logout">注销</a></li>
                 </ul>
             </div>
             <ul class="collapse navbar-collapse nav navbar-nav top-menu">
-                <li><a href="#"><i class="glyphicon glyphicon-globe"></i> 访问网站</a></li>
+                <!--<li><a href="#"><i class="glyphicon glyphicon-globe"></i> 访问网站</a></li>-->
                 <li>
-                    <form class="navbar-search pull-right">
-                        <input placeholder="搜索" class="search-query form-control col-md-10" name="query"
-                               type="text">
+                    <form class="navbar-search pull-right" id="forms">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2" name="query">
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="checkForm()">搜索</button>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
                 </li>
             </ul>
@@ -65,9 +71,7 @@
                         <li><a href="/booktypeUI/1" target="mainframe"><i class="glyphicon glyphicon-th-large"></i><span style="padding-left: 10px">删除类别</span></a>
                         </li>
                         <li class="nav-header hidden-md">其他功能</li>
-                        <li><a href="/setting"><i class="glyphicon glyphicon-cog" target="mainframe"></i><span style="padding-left: 10px">系统设置</span></a>
-                        </li>
-                        <li><a href="/aboubt"><i class="glyphicon glyphicon-question-sign" target="mainframe"></i><span style="padding-left: 10px">联系我们</span></a>
+                        <li><a href="/about" target="mainframe"><i class="glyphicon glyphicon-question-sign" target="mainframe"></i><span style="padding-left: 10px">联系我们</span></a>
                         </li>
                     </ul>
                     <label><li class="nav-header hidden-md">敬请期待更多功能</li></label>
@@ -85,10 +89,7 @@
         </li>
     </ul>
 </div>
-            <!--test-->
-            <!-- Button trigger modal -->
             <button id="mes" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display: none"></button>
-            <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -113,7 +114,7 @@
             <div class="box-header well">
             </div>
             <div id="main" style="height: 750px;" >
-                <iframe src="/list/0" name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px">
+                <iframe  name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px" id="mainframe">
                 </iframe>
             </div>
             </div>
@@ -121,23 +122,6 @@
     </div>
 </div>
     <hr>
-    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-        <!--<div class="modal-dialog">-->
-            <!--<div class="modal-content">-->
-                <!--<div class="modal-header">-->
-                    <!--<button type="button" class="close" data-dismiss="modal">×</button>-->
-                    <!--<h3>本站提示</h3>-->
-                <!--</div>-->
-                <!--<div class="modal-body">-->
-                    <!--<p id="message"></p>-->
-                <!--</div>-->
-                <!--<div class="modal-footer">-->
-                    <!--<a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>-->
-                    <!--<a href="#" class="btn btn-primary" data-dismiss="modal">确定</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
     <footer class="row">
         <p class="col-md-3 col-sm-3 col-xs-12 powered-by center-block">©  2018  Powered by: <a href="#">Mikey</a></p>
     </footer>
@@ -145,5 +129,14 @@
 </div>
 </body>
 <script>
+    function checkForm(){
+        var query = $("input[name='query']").val().trim();
+        if (query===null||query===''){
+            $("#message" ).text("请输入书籍编号或者书名");
+            $("#mes" ).click();
+            return;
+        }
+            $("#mainframe").load("/seacherbook/"+query);
+    }
 </script>
 </html>
