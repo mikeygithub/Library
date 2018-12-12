@@ -157,13 +157,30 @@ public class BookController {
     public String aboutUI(){
         return "about";
     }
-    @RequestMapping("/seacherbook/{query}")
-    public String seacherBook(@PathVariable("query") String query,Map<String,Object> map){
+
+    /**
+     * 查询
+     * @param query
+     * @param map
+     * @return
+     */
+    @RequestMapping("/seacherbook")
+    public String seacherBook(String query,Map<String,Object> map){
 
         PageInfo<Book> allBook = bookService.getBookByIdOrBookName(query,1, 11);
+
+        System.out.println("查询.................");
 
         map.put("allbook",allBook);
 
         return "result";
+    }
+    /**
+     * 测试
+     * @return
+     */
+    @RequestMapping("/seacher")
+    public String test(){
+        return "seacherUi";
     }
 }

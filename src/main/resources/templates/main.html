@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/main"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
+            <a class="navbar-brand" href="/main"> <img src="img/logo20.png" class="hidden-xs"/>
                 <span>图书管理系统</span></a>
             <div class="btn-group pull-right">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -30,16 +30,15 @@
                 </ul>
             </div>
             <ul class="collapse navbar-collapse nav navbar-nav top-menu">
-                <!--<li><a href="#"><i class="glyphicon glyphicon-globe"></i> 访问网站</a></li>-->
                 <li>
-                    <form class="navbar-search pull-right" id="forms">
+                    <form target="mainframe" class="navbar-search pull-right" id="forms" action="/seacherbook" onsubmit="checkForm()">
                         <table>
                             <tr>
                                 <td>
                                     <input type="text" class="form-control" placeholder="搜索" aria-describedby="basic-addon2" name="query">
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="checkForm()">搜索</button>
+                                    <button type="submit" class="btn btn-primary">搜索</button>
                                 </td>
                             </tr>
                         </table>
@@ -66,6 +65,9 @@
                         <li><a href="/list/0" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">图书列表</span></a>
                         </li>
                         <li><a href="/deletebookUI/1" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">删除图书</span></a></li>
+                        <li><a href="/seacher" target="mainframe"><i class="glyphicon glyphicon-list-alt"></i><span style="padding-left: 10px">查找图书</span></a></li>
+
+
                         <li><a href="/addbooktypeUI" target="mainframe"><i class="glyphicon glyphicon-tags"></i><span style="padding-left: 10px">添加类别</span></a>
                         </li>
                         <li><a href="/booktypeUI/1" target="mainframe"><i class="glyphicon glyphicon-th-large"></i><span style="padding-left: 10px">删除类别</span></a>
@@ -114,7 +116,7 @@
             <div class="box-header well">
             </div>
             <div id="main" style="height: 750px;" >
-                <iframe  name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px" id="mainframe">
+                <iframe src="/test"  name="mainframe" style="overflow: hidden;height: 100%;width: 100%;border: 0px" id="mainframe">
                 </iframe>
             </div>
             </div>
@@ -132,11 +134,10 @@
     function checkForm(){
         var query = $("input[name='query']").val().trim();
         if (query===null||query===''){
-            $("#message" ).text("请输入书籍编号或者书名");
-            $("#mes" ).click();
+            $("#message").text("请输入书籍编号或者书名");
+            $("#mes").click();
             return;
         }
-            $("#mainframe").load("/seacherbook/"+query);
     }
 </script>
 </html>
