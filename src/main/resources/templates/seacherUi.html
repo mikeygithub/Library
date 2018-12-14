@@ -6,7 +6,7 @@
     <script src="/static/common/common.js"></script>
 </head>
 <body style="padding: 50px">
-<form class="form-horizontal" action="/seacherbook" id="addbooks" method="post">
+<form class="form-horizontal" action="/seacherbook" id="addbooks" method="post" onsubmit="return checkForm()">
     <div class="form-group">
         <label for="" class="col-sm-2 control-label">书籍编号/书籍名称：</label>
         <div class="col-sm-10">
@@ -22,5 +22,14 @@
 </div>
 </body>
 <script>
+    function checkForm(){
+        var query = $("input[name='query']").val().trim();
+        if (query===null||query===''){
+            $("#message", parent.document).text("请输入书籍编号或者书名");
+            $("#mes", parent.document).click();
+            return false;
+        }
+        return true;
+    }
 </script>
 </html>

@@ -3,13 +3,18 @@ package com.mikey.eas.Service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Mapper.BookMapper;
+import com.mikey.eas.Mapper.BookTypeMapper;
 import com.mikey.eas.Pojo.Book;
 import com.mikey.eas.Pojo.BookExample;
+import com.mikey.eas.Pojo.BookType;
 import com.mikey.eas.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Mikey
@@ -24,6 +29,8 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookMapper bookMapper;
+    @Autowired
+    private BookTypeMapper bookTypeMapper;
 
     @Override
     public void addBook(Book book) {
@@ -75,7 +82,12 @@ public class BookServiceImpl implements BookService {
 
         BookExample.Criteria criteria2 = bookExample.createCriteria();
 
-        bookExample.or(criteria2.andBookIdEqualTo(Integer.parseInt(idOrName)));
+        try {
+            bookExample.or(criteria2.andBookIdEqualTo(Integer.parseInt(idOrName)));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            bookExample.or(criteria2.andBookIdEqualTo(-1));
+        }
 
         PageHelper.startPage(currentPage,pageSize);
 
@@ -84,5 +96,36 @@ public class BookServiceImpl implements BookService {
         PageInfo pageData = new PageInfo(allBook, pageSize);
 
         return pageData;
+    }
+
+    /**
+     * 获取数据，将其可视化
+     * @return
+     */
+    @Override
+    public Map<String, Object> getDataStatistics() {
+        Map<String,Object> map=new HashMap<>();
+        List<String> titleList=new ArrayList<>();
+        List<Long> numList=new ArrayList<>();
+        //查询类型
+        List<Map<String,Object>> dataStatistics = bookMapper.getDataStatistics();//获取数据
+
+        for (Map<String,Object> result:dataStatistics){
+            for(Map.Entry<String,Object> entry:result.entrySet()){
+                if (entry.getKey().equals("type_name")){
+                    titleList.add((String)entry.getValue());
+                    continue;
+                }else {
+                    numList.add((Long)entry.getValue());
+                }
+            }
+        }
+
+        String[] title=new String[36];
+        map.put("title",title);
+        //查询类型对应的书籍数目
+        Integer[] num=new Integer[36];
+        map.put("num",num);
+        return map;
     }
 }

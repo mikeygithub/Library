@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Pojo.Book;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Mikey
@@ -21,4 +22,6 @@ public interface BookService {
     public PageInfo<Book> getAllBook(int currentPage, int pageSize);
 
     PageInfo<Book> getBookByIdOrBookName(String query,int i, int i1);
+
+    Map<String, Object> getDataStatistics();
 }

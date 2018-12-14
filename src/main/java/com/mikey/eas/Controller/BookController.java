@@ -3,6 +3,7 @@ package com.mikey.eas.Controller;
 import com.github.pagehelper.PageInfo;
 import com.mikey.eas.Pojo.Book;
 import com.mikey.eas.Service.BookService;
+import com.mikey.eas.Utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -169,8 +170,6 @@ public class BookController {
 
         PageInfo<Book> allBook = bookService.getBookByIdOrBookName(query,1, 11);
 
-        System.out.println("查询.................");
-
         map.put("allbook",allBook);
 
         return "result";
@@ -180,7 +179,26 @@ public class BookController {
      * @return
      */
     @RequestMapping("/seacher")
-    public String test(){
+    public String seacherUI(){
         return "seacherUi";
+    }
+
+    /**
+     * 统计数据
+     * @return
+     */
+    @RequestMapping("/datastatisticsUI")
+    public String dataStatisticsUI(){
+        return "datastatistics";
+    }
+
+    /**
+     * 获取统计数据
+     */
+    @ResponseBody
+    @RequestMapping("/getDataStatistics")
+    public R getDataStatistics(){
+        Map<String,Object> map=bookService.getDataStatistics();
+        return R.ok(map);
     }
 }

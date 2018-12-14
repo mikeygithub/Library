@@ -3,6 +3,8 @@ package com.mikey.eas.Mapper;
 import com.mikey.eas.Pojo.Book;
 import com.mikey.eas.Pojo.BookExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface BookMapper {
@@ -27,4 +29,10 @@ public interface BookMapper {
     int updateByPrimaryKeySelective(Book record);
 
     int updateByPrimaryKey(Book record);
+
+    /**
+     * 获取数据进行可视化
+     * @return
+     */
+    List getDataStatistics();
 }

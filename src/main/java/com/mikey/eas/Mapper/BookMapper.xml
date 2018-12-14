@@ -230,4 +230,15 @@
       book_author = #{bookAuthor,jdbcType=VARCHAR}
     where book_id = #{bookId,jdbcType=INTEGER}
   </update>
+  <select id="getDataStatistics" resultType="java.util.Map">
+    SELECT lbt.type_name,count(lb.book_id) num
+    FROM
+    lib_book_type lbt
+    LEFT JOIN
+    lib_book lb
+    on
+    lbt.type_id=lb.book_type
+    GROUP BY
+    lbt.type_id
+  </select>
 </mapper>

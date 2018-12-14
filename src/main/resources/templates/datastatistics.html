@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据统计</title>
+    <script src="/static/common/common.js"></script>
+</head>
+<body>
+<div id="main" style="width: 100%;height:400px;margin-top: 50px"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    $.get('/getDataStatistics').done(function (data) {
+        myChart.hideLoading("拼命加载中..........");
+        myChart.setOption({
+        title: {
+            text: '各类书籍数量统计'
+        },
+        tooltip: {},
+        legend: {
+            data:['书籍数量']
+        },
+            grid: {
+                y2: 50  //增加柱形图纵向的高度
+            },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","羊毛衫","雪纺衫","裤子",
+                "高跟鞋","袜子","羊毛衫","雪纺衫","裤子","高跟鞋","袜子",
+                "衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","羊毛衫","雪纺衫","裤子",
+                "高跟鞋","袜子","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","雪纺衫","裤子","高跟鞋","袜子"],
+            axisLabel:{
+                interval:0,//横轴信息全部显示
+                rotate:-15,//-15度角倾斜显示
+            }
+        },
+            yAxis: {},
+        series: [{
+            name: '数量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20, 20,
+                36, 10, 10, 20, 20, 36, 10, 10, 20,
+                5, 20, 36, 10, 10, 20, 20,
+                36, 10, 10, 20, 20, 36, 10, 10, 20,
+                5, 20, 36, 10,]
+        }]
+    });
+    });
+
+    // 显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
