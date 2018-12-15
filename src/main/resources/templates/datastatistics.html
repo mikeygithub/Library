@@ -10,6 +10,7 @@
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('main'));
     $.get('/getDataStatistics').done(function (data) {
+
         myChart.hideLoading("拼命加载中..........");
         myChart.setOption({
         title: {
@@ -23,10 +24,7 @@
                 y2: 50  //增加柱形图纵向的高度
             },
         xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","羊毛衫","雪纺衫","裤子",
-                "高跟鞋","袜子","羊毛衫","雪纺衫","裤子","高跟鞋","袜子",
-                "衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","羊毛衫","雪纺衫","裤子",
-                "高跟鞋","袜子","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","雪纺衫","裤子","高跟鞋","袜子"],
+            data: data.title,
             axisLabel:{
                 interval:0,//横轴信息全部显示
                 rotate:-15,//-15度角倾斜显示
@@ -36,17 +34,52 @@
         series: [{
             name: '数量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20, 20,
-                36, 10, 10, 20, 20, 36, 10, 10, 20,
-                5, 20, 36, 10, 10, 20, 20,
-                36, 10, 10, 20, 20, 36, 10, 10, 20,
-                5, 20, 36, 10,]
-        }]
+            data: data.num,
+            itemStyle: {
+                //通常情况下：
+                normal:{
+                    //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                    color: function(params) {
+                        // build a color map as your need.
+                        var colorList = [
+                            '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0',
+                            '#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B',
+                            '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD',
+                            '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                    },
+                //鼠标悬停时：
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            //控制边距　
+            grid: {
+                left: '0%',
+                right:'10%',
+                containLabel: true,
+            },
+    }],
+        dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    start: 10,      // 左边在 10% 的位置。
+                    end: 60         // 右边在 60% 的位置。
+                },
+                {   // 这个dataZoom组件，也控制x轴。
+                    type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
+                    start: 10,      // 左边在 10% 的位置。
+                    end: 60         // 右边在 60% 的位置。
+                }
+            ],
     });
     });
-
-    // 显示图表。
-    myChart.setOption(option);
 </script>
 </body>
 </html>

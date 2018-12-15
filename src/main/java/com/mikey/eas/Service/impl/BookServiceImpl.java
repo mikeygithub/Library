@@ -121,11 +121,9 @@ public class BookServiceImpl implements BookService {
             }
         }
 
-        String[] title=new String[36];
-        map.put("title",title);
+        map.put("title",titleList);
         //查询类型对应的书籍数目
-        Integer[] num=new Integer[36];
-        map.put("num",num);
+        map.put("num",numList);
         return map;
     }
 }
